@@ -9,3 +9,6 @@ the searchbar was made using nextui and for the Icons in the example @mui/icons-
 ```bash
 npm i @nextui/react @mui/icons-material
 ```
+
+known issues:
+- finiky behavior when search is empty and attempting to change sorting or order
