@@ -1,6 +1,12 @@
 # Simple Array Search
 
 ## this is a simple modular searchbar that can filter through an array of objects.
+Features:
+- modular
+- sortable
+- reversible (ascending/descending)
+- can determine new sorting methods easily
+- can set icons for ascending/descending
 
 this was my first time using typescript, and still kind of new to react.
 an example of the searchbar can be found in [exampleUsage.tsx](https://github.com/Cryogenetics/ReactComponents/blob/main/SimpleArraySearch/exampleUsage.tsx)
