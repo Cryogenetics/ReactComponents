@@ -7,7 +7,7 @@ interface sortOptions {
     name: String,
     func: (a: any, b: any) => number
     }
-    interface arrayObject extends Object {
+    interface arrayObject {
         [key: string]: any
     }
     interface searchProps {
