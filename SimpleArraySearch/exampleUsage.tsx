@@ -31,6 +31,7 @@ export default function example() {
                 setResult={setResultArray} // accepts setState or custom function
                 searchOptions={["name", "value"]} // keys you can search by
                 sortable // marks it as sortable (boolean, optional)
+                // if your lazy you can technically make a class that automates the process of making sort options
                 sortOptions={[
                     {
                         name: "default", // displayValue
