@@ -1,5 +1,5 @@
 import SearchBar from "../../components/shared/SearchBar";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import React from "react"; // required for some reason, don't know why
 
 //material UI icon imports
