@@ -1,35 +1,27 @@
-// this was my first time using TypeScript in a component, and one of my first times using React
-
 import { Input, Dropdown, Row, Button } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+// requires @nextui-org/react
+
 
 interface sortOptions {
     name: String,
     func: (a: any, b: any) => number
     }
-
-    interface sortOptionsArray extends Array<sortOptions> {}
-
-    
-    //Object that needs string keys
-    interface arrayObject {
+    interface arrayObject extends Object {
         [key: string]: any
     }
-
-
-    
     interface searchProps {
     originalArray: Array<arrayObject>,
-    setResult: React.Dispatch<React.SetStateAction<Array<arrayObject>>>,
+    setResult: Function, // was setState, but supports custom functions.
     searchOptions: Array<string>,
     sortable?: Boolean,
     reversible?: Boolean,
-    sortOptions?: sortOptionsArray,
-    AscIcon?: React.ReactNode,
-    DescIcon?: React.ReactNode,
+    sortOptions?: Array<sortOptions>,
+    AscIcon?:  React.ReactNode,
+    DescIcon?: React.ReactNode
 }
 
- export default function SearchBar({
+ function SearchBar({
     originalArray,
     setResult,
     searchOptions,
@@ -39,27 +31,27 @@ interface sortOptions {
     AscIcon,
     DescIcon,
 }: searchProps) {
-    console.log(searchOptions)
     const [search, setSearch] = useState("");
     const [searchBy, setSearchBy] = useState(searchOptions[0]);
     const [sortBy, setSortBy] = useState(sortOptions![0]?.name);
     const [reversed, setReversed] = useState(false);
     useEffect(() => {
-        if (!search && !sortable && !reversible) return setResult(originalArray); // reset the array if no search and no sort
-        let result = originalArray;
+        setResult([originalArray[originalArray.length - 1]]); // force purge the result array to allow changes when no search query.
+        const tempArray = [...originalArray];
+        if (!search && !sortable && !reversible) return setResult(tempArray); // reset the array if no search and not sortable or reversible
+        let result = tempArray;
         if (search && searchBy && search !== "")
-            result = originalArray.filter((k) =>
+            result = tempArray.filter((k) =>
                 String(k[searchBy as keyof typeof k])
                     ?.toLowerCase()
-                    .startsWith(search.toLowerCase()),
+                    .startsWith(search?.toLowerCase()),
             );
-        console.log(result.length);
-        if (result.length === 0) result = originalArray;
-        console.log("change", reversed, reversible);
+        if (result.length === 0) result = tempArray;
         if (sortable && sortOptions!.length > 0)
             result.sort(sortOptions!.find((o) => o.name === sortBy)?.func);
         if (reversible && reversed) result.reverse();
-        setResult(result);
+        console.log(result)
+        return setResult(result)
     }, [reversed, searchBy, search, sortBy, originalArray]);
 
     return (
@@ -154,3 +146,5 @@ interface sortOptions {
         />
     );
 }
+
+export default SearchBar;
