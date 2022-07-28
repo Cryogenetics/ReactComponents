@@ -13,7 +13,7 @@ an example of the searchbar can be found in [exampleUsage.tsx](https://github.co
 
 the searchbar was made using nextui and for the Icons in the example @mui/icons-material was used
 ```bash
-npm i @nextui/react @mui/icons-material
+npm i @nextui-org/react @mui/icons-material
 ```
 
 known issues:
