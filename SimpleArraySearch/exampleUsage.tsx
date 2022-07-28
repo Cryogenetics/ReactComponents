@@ -1,4 +1,4 @@
-import SearchBar from "../../components/shared/SearchBar";
+import SearchBar from "./index";
 import { useState } from "react";
 import React from "react"; // required for some reason, don't know why
 
